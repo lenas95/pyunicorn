@@ -17,6 +17,9 @@
 
 from setuptools import setup
 from setuptools.extension import Extension
+import imp
+import os
+
 
 import numpy as np
 
@@ -29,8 +32,16 @@ except ImportError:
 
 # -----------------------------------------------------------------------------
 
-__version__ = ''
-exec(open('pyunicorn/_version.py').read())
+'''__version__ = ''
+exec(open('pyunicorn/_version.py').read())'''
+
+#__version__ = imp.load_source("", "pyunicorn/__init__.py").__version__
+
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+with open(os.path.join(__location__, "pyunicorn", 'VERSION'),"rt") as fd:
+    __version__ = fd.readline().strip()
 
 # -----------------------------------------------------------------------------
 

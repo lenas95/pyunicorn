@@ -40,13 +40,23 @@ To Do
 import os
 import sys
 
-from ._version import __version__
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+with open(os.path.join(__location__, 'VERSION'),"rt") as fd:
+    __version__ = fd.readline().strip()
+
+#from ._version import __version__
 
 from .utils import mpi
 from .core import *
 
+
+
+
 sys.path.insert(0, os.path.abspath('../..'))
 
+#__version__ = '0.6.1'
 __author__ = "Jonathan F. Donges <donges@pik-potsdam.de>"
 __copyright__ = \
     "Copyright (C) 2008-2019 Jonathan F. Donges and pyunicorn authors"
